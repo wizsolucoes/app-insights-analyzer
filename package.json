@@ -1,0 +1,37 @@
+{
+  "name": "@wizsolucoes/app-insights-analyzer",
+  "version": "1.0.0",
+  "description": "Ferramenta CLI para verificar a configuração correta de application insights em uma aplicação.",
+  "main": "index.js",
+  "bin": {
+    "app-insights-analyzer": "./index.js"
+  },
+  "files": [
+    "src/",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js"
+  },
+  "homepage": "https://github.com/wizsolucoes/app-insights-analyzer#application-insights-analyzer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wizsolucoes/app-insights-analyzer"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.15",
+    "jest": "^26.6.3"
+  },
+  "dependencies": {
+    "azure-storage": "^2.10.3",
+    "command-line-args": "^5.1.1",
+    "find-in-files": "^0.5.0"
+  }
+}
