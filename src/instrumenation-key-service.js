@@ -29,7 +29,12 @@ exports.fetch = async function (appName) {
       `Instrumentation key for application ${appName}: ${instrumentationKey}`
     );
   } catch (error) {
-    handleError(error);
+    const finalError =
+      error.code === 'ResourceNotFound'
+        ? `Desculpa! A chave de instrumentação para ${appName} não foi encontrada no banco de dados. Por favor contatar o advisor de front-end: Touré Holder <toureholder@wizsolucoes.com.br> para inserí-la.`
+        : error;
+
+    handleError(finalError);
   }
 
   return instrumentationKey;
