@@ -1,6 +1,6 @@
 {
   "name": "@wizsolucoes/app-insights-analyzer",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Ferramenta CLI para verificar a configuração correta de application insights em uma aplicação.",
   "main": "index.js",
   "bin": {
