@@ -35,8 +35,8 @@ npm start
 
 ## Como funciona
 A analisador segue os seguintes passos:
-1. A chave de instrumentação que a aplicação sob análise deve usar,
-2. Procura pela chave de instrumentação no código da aplicação,
+1. Busca a chave de instrumentação que deve ser usado pelo nome da aplicação sob análise,
+2. Procura pela chave de instrumentação correta no código da aplicação,
 3. Procura pela instalação do SDK de Application Insights no arquivo package.json.
 
 ## Parâmetros
@@ -66,4 +66,6 @@ A ferramenta precisa usar os seguintes variáveis de ambiente para buscar a chav
 
 `APPINSIGHTS_ANALYSIS_STORAGE_ACCOUNT` - Nome da conta de storage.
 
-`APPINSIGHTS_ANALYSIS_STORAGE_TABLE` - Nome da tabela da conta de storage.
+`APPINSIGHTS_ANALYSIS_STORAGE_TABLE` - Nome da tabela da conta de storage para consultar chaves.
+
+`APPINSIGHTS_ANALYSIS_RESULTS_STORAGE_TABLE` - Nome da tabela da conta de storage para publicar resultados.

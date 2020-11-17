@@ -1,17 +1,13 @@
-const azure = require('azure-storage');
 const errorHandler = require('./error-handler');
 const errorTag = 'InstrumentationKeyService::ERROR:';
 
-const tableName = process.env.APPINSIGHTS_ANALYSIS_STORAGE_TABLE;
-const storageAccount = process.env.APPINSIGHTS_ANALYSIS_STORAGE_ACCOUNT;
-const storageAccessKey = process.env.APPINSIGHTS_ANALYSIS_STORAGE_KEY;
-validateEnvVars();
-
-const tableSvc = azure.createTableService(storageAccount, storageAccessKey);
+let tableService;
 var exports = module.exports;
 
-exports.fetch = async function (appName) {
-  validateArgs(appName);
+exports.fetch = async function (tableSvc, tableName, appName) {
+  validateArgs(tableSvc, tableName, appName);
+
+  tableService = tableSvc;
 
   let instrumentationKey;
 
@@ -42,7 +38,7 @@ exports.fetch = async function (appName) {
 
 function retrieveEntityAsync(...args) {
   return new Promise((resolve, reject) => {
-    tableSvc.retrieveEntity(...args, (error, result, _) => {
+    tableService.retrieveEntity(...args, (error, result, _) => {
       if (error) {
         return reject(error);
       }
@@ -52,23 +48,17 @@ function retrieveEntityAsync(...args) {
   });
 }
 
-function validateArgs(appName) {
+function validateArgs(tableSvc, tableName, appName) {
   if (!appName) {
     handleError('Application name must be provided.');
   }
-}
 
-function validateEnvVars() {
+  if (!tableSvc) {
+    handleError('Table service name must be provided.');
+  }
+
   if (!tableName) {
-    handleError('Azure Storage table name must be provided.');
-  }
-
-  if (!storageAccount) {
-    handleError('Azure Storage account must be provided.');
-  }
-
-  if (!storageAccessKey) {
-    handleError('Azure Storage access key name must be provided.');
+    handleError('Table name name must be provided.');
   }
 }
 

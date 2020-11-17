@@ -4,7 +4,7 @@ const errorTag = 'BuildBreaker::ERROR:';
 var exports = module.exports;
 
 exports.run = function (instrumentationKey, result) {
-  validateArgs(instrumentationKey);
+  validateArgs(instrumentationKey, result);
 
   if (!result) {
     handleError(
@@ -15,9 +15,13 @@ exports.run = function (instrumentationKey, result) {
   }
 };
 
-function validateArgs(instrumentationKey) {
+function validateArgs(instrumentationKey, result) {
   if (!instrumentationKey) {
     handleError('Instrumentation key must be provided.');
+  }
+
+  if (result === null || result === undefined) {
+    handleError('Result must be provided.');
   }
 }
 

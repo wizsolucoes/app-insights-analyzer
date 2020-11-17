@@ -33,7 +33,7 @@ function validateArgs(instrumentationKey, directory) {
 
 async function findInstrumentationKey(instrumentationKey, directory) {
   console.log(
-    `INFO: Looking for instrumentation key in directory ${directory}...`
+    `INFO: Looking for instrumentation key in directory ${directory} ...`
   );
 
   const results = await finder.find(
