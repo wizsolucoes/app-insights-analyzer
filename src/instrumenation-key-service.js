@@ -20,6 +20,11 @@ exports.fetch = async function (tableSvc, tableName, appName) {
     );
 
     instrumentationKey = retrievedEntity.InstrumentationKey._;
+
+    if (instrumentationKey === 'pending') {
+      throw { code: 'ResourceNotFound' };
+    }
+
     console.log(
       'INFO:',
       `Instrumentation key for application ${appName}: ${instrumentationKey}`
@@ -27,7 +32,7 @@ exports.fetch = async function (tableSvc, tableName, appName) {
   } catch (error) {
     const finalError =
       error.code === 'ResourceNotFound'
-        ? `Desculpa! A chave de instrumentação para ${appName} não foi encontrada no banco de dados. Por favor contatar o advisor de front-end: Touré Holder <toureholder@wizsolucoes.com.br> para inserí-la.`
+        ? `Desculpa! Não encontramos uma chave de instrumentação para ${appName} no nosso banco de dados. Por favor contatar o advisor de front-end: Touré Holder <toureholder@wizsolucoes.com.br> para inserí-la.`
         : error;
 
     handleError(finalError);
