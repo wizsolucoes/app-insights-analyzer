@@ -38,7 +38,7 @@ exports.fetch = async function (tableSvc, tableName, appName) {
     handleError(finalError);
   }
 
-  return instrumentationKey;
+  return instrumentationKey.trim();
 };
 
 function retrieveEntityAsync(...args) {
